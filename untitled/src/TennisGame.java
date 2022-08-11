@@ -1,6 +1,7 @@
 public class TennisGame {
     String score = "";
     int tempScore;
+    TennisGame(){}
     public String getScore(String player1Name, String player2Name, int player1Score, int player2Score) {
         if (player1Score == player2Score) {
            score = checkScore(player1Score,score);
