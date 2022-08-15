@@ -4,11 +4,13 @@ public class TennisGame {
 
 // doi ten bien
     public static String getScore(String player1Name, String player2Name, int player1Score , int player2Score) {
+//        gia tri than ky
+        int adventagePoint = 4;
         String stringScore;
         if (player1Score == player2Score) {
 //            tach ham
             stringScore = showSameScore(player1Score);
-        } else if (player1Score >= 4 || player2Score >= 4) {
+        } else if (player1Score >= adventagePoint || player2Score >= adventagePoint) {
 //            tach ham
             stringScore = showScoreWin(player1Score, player2Score, player1Name, player2Name);
         } else {
