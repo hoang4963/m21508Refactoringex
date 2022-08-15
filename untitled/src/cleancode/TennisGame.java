@@ -1,12 +1,18 @@
+package cleancode;
+
 public class TennisGame {
 
-    public static String getScore(String player1Name, String player2Name, int player1Score, int player2Score) {
+// doi ten bien
+    public static String getScore(String player1Name, String player2Name, int player1Score , int player2Score) {
         String stringScore;
         if (player1Score == player2Score) {
+//            tach ham
             stringScore = showSameScore(player1Score);
         } else if (player1Score >= 4 || player2Score >= 4) {
+//            tach ham
             stringScore = showScoreWin(player1Score, player2Score, player1Name, player2Name);
         } else {
+//            tach ham
             stringScore = showScoreAfterWin(player1Score, player2Score);
         }
         return stringScore;
