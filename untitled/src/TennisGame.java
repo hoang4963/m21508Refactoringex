@@ -1,54 +1,48 @@
 public class TennisGame {
-    String score = "";
-    int tempScore;
-    TennisGame(){}
-    public String getScore(String player1Name, String player2Name, int player1Score, int player2Score) {
+
+    public static String getScore(String player1Name, String player2Name, int player1Score, int player2Score) {
+        String stringScore;
         if (player1Score == player2Score) {
-           score = checkScore(player1Score,score);
+            stringScore = showSameScore(player1Score);
         } else if (player1Score >= 4 || player2Score >= 4) {
-            int minusResult = player1Score - player2Score;
-            score = checkMinusRusult(minusResult, score, player1Name, player2Name);
+            stringScore = showScoreWin(player1Score, player2Score, player1Name, player2Name);
         } else {
-            for (int i = 1; i < 3; i++) {
-                if (i == 1) tempScore = player1Score;
-                else {
-                    score += "-";
-                    tempScore = player2Score;
-                }
-                score = checkScore(tempScore,score);
-            }
+            stringScore = showScoreAfterWin(player1Score, player2Score);
         }
-        return score;
+        return stringScore;
     }
-    public String checkScore(int Score, String score){
-        switch (Score){
-            case 0:
-                score += "Love-All";
-                break;
-            case 1:
-                score += "Fifteen-All";
-                break;
-            case 2:
-                score += "Thirty-All";
-                break;
-            case 3:
-                score += "Forty-All";
-                break;
-            default:
-                score += "Deuce";
-                break;
-        }
-        return score;
+
+    public static String showSameScore(int player1Score) {
+        return switch (player1Score) {
+            case 0 -> "Love-All";
+            case 1 -> "Fifteen-All";
+            case 2 -> "Thirty-All";
+            case 3 -> "Forty-All";
+            default -> "Deuce";
+        };
     }
-    public String checkMinusRusult(int minusResult, String score1, String player1Name, String player2Name){
-        if (minusResult == 1)
-            score1 = "Advantage " +player1Name ;
-        else if (minusResult == -1)
-            score1 = "Advantage " + player2Name;
-        else if (minusResult >= 2)
-            score1 = "Win for " + player1Name;
-        else
-            score1 = "Win for " +player2Name;
-        return score1;
+
+    public static String showScoreWin(int player1Score, int player2Score, String player1Name, String player2Name) {
+        String stringScore;
+        int minusResult = player1Score - player2Score;
+        if (minusResult == 1) stringScore = "Advantage " + player1Name;
+        else if (minusResult == -1) stringScore = "Advantage " + player2Name;
+        else if (minusResult >= 2) stringScore = "Win for " + player1Name;
+        else stringScore = "Win for " + player2Name;
+        return stringScore;
+    }
+
+    public static String showScoreAfterWin(int player1Score, int player2Score) {
+        return showScore(player1Score) + " - " + showScore(player2Score);
+    }
+
+    public static String showScore(int tempScore) {
+        return switch (tempScore) {
+            case 0 -> "Love";
+            case 1 -> "Fifteen";
+            case 2 -> "Thirty";
+            case 3 -> "Forty";
+            default -> "No";
+        };
     }
 }
